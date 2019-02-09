@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.page.actionBarHidden = true;
     this.page.backgroundSpanUnderStatusBar = true;
+    this.user['email']='someemail@gmail.com';
+    this.user['password']='passmein';
   }
 
   submit() {
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => {
           alert("Your account was successfully created!");
-          setTimeout(() => { this.router.navigate(["/restaurants"]) }, 2000)
+          setTimeout(() => { this.router.navigate(["/home"]) }, 2000)
           // this.toggleDisplay();
         },
         (error) => alert("Invalid user and password")
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => {
           alert("Your account was successfully created!");
-          setTimeout(() => { this.router.navigate(["/restaurants"]) }, 2000)
+          setTimeout(() => { this.router.navigate(["/home"]) }, 2000)
         },
         (error) => alert("Invalid user and password")
       );

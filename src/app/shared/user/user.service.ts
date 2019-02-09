@@ -7,10 +7,11 @@ const appSettings = require("application-settings");
 
 import { User } from "./user.model";
 import { Config } from "../config";
+import { RouterExtensions } from "nativescript-angular/router";
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) { }
+  constructor(private http: Http, private route: RouterExtensions) { }
 
   getToken(){
     return appSettings.getString("token");
@@ -54,7 +55,6 @@ export class UserService {
       { headers: this.getCommonHeaders() }
     ).pipe(
       map(response => {
-        console.log(response.json()['token']);
         this.setToken(response.json()['token'])
         return response.json()['user'];
       }),
@@ -72,15 +72,16 @@ export class UserService {
       { headers: this.getCommonHeaders() }
     ).pipe(
       map(response => {
-        this.setToken(response.headers.toJSON()['x-auth'][0])
-        return response.json();
+        this.setToken(response.json()['token'])
+        return response.json()['user'];
       }),
       catchError(this.handleErrors)
     );
   }
 
   logout(){
-    return this.removeToken();
+    this.removeToken();
+    this.route.navigate(['login']);
   }
 
   getCommonHeaders() {
@@ -91,8 +92,6 @@ export class UserService {
   }
 
   handleErrors(error: Response) {
-    console.log('error');
-    console.log(error);
     return throwError(error);
   }
 }

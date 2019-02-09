@@ -9,8 +9,6 @@ import { UserService } from "./shared/user/user.service";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-
-
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { AuthGuard } from "./shared/auth-guard.service";
 

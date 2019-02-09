@@ -1,1 +1,36 @@
-<Button text="upsert-vehicle works!" class="btn btn-primary"></Button>
+
+<ActionBar [title]="new?'Add':'Edit'" class="action-bar">
+      <ActionItem ios.position="left" android.position="left" (tap)="onCancelButtonTap()">
+            <Label text="Cancel" class="action-item"></Label>
+      </ActionItem>
+      <ActionItem ios.position="right" android.position="right">
+            <Label text="Done" class="action-item" verticalAlignment="center" (tap)="submit()"></Label>
+      </ActionItem>
+</ActionBar>
+
+<FlexboxLayout>
+	<StackLayout class="form" [class.dark]="!isLoggingIn">
+            <Label class="h3 text-left" text="Make" textWrap="true"></Label>
+            <TextField hint="Eg. Toyota" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.make"
+            class="input input-border"></TextField>
+            <Label class="h3 text-left" text="Model" textWrap="true"></Label>
+            <TextField hint="Eg. Corolla" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.model"
+            class="input input-border"></TextField>
+            <Label class="h3 text-left" text="Model Year" textWrap="true"></Label>
+            <TextField hint="Eg. 2004" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.model_year"
+            class="input input-border"></TextField>
+            <Label class="h3 text-left" text="Mileage in Km/L" textWrap="true"></Label>
+            <TextField hint="Eg. 20" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.mileage"
+            class="input input-border"></TextField>
+            <Label class="h3 text-left" text="Colour" textWrap="true"></Label>
+            <TextField hint="Eg. White" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.colour"
+            class="input input-border"></TextField>
+            <Label class="h3 text-left" text="Chassis Number" textWrap="true"></Label>
+            <TextField hint="Eg. MK20194RSTP" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.chassis_no"
+            class="input input-border"></TextField>
+            <Label class="h3 text-left" text="Purchase Year" textWrap="true"></Label>
+            <TextField hint="Eg. 2006" autocorrect="false" autocapitalizationType="none" [(ngModel)]="car.purchased_year"
+            class="input input-border"></TextField>
+		<Button text="Save" class="btn btn-primary" (tap)="submit()"></Button>
+	</StackLayout>
+</FlexboxLayout>

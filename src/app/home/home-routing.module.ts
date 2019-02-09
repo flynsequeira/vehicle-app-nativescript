@@ -6,7 +6,8 @@ import { HomeComponent } from "./home.component";
 import { UpsertVehicleComponent } from "./upsert-vehicle/upsert-vehicle.component";
 
 const routes: Routes = [
-    { path: "/edit", component: UpsertVehicleComponent},
+    // { path: "add-vehicle", component: UpsertVehicleComponent},
+    { path: "edit-vehicle/:id", component: UpsertVehicleComponent},
     { path: "", component: HomeComponent }
 ];
 
