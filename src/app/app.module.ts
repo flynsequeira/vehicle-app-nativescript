@@ -15,6 +15,8 @@ import { AuthGuard } from "./shared/auth-guard.service";
 import { NativeScriptAnimationsModule } from "nativescript-angular/animations";
 
 import { CommonModule } from "@angular/common";
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from "./shared/auth.service";
 // import { TNSFontIconModule } from "nativescript-ngx-fonticon"
 
 
@@ -36,14 +38,16 @@ import { CommonModule } from "@angular/common";
     ],
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
+        AuthComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ],
     providers:[
         UserService,
-        AuthGuard
+        AuthGuard,
+        AuthService
     ]
 })
 export class AppModule { }

@@ -3,6 +3,9 @@ import { User } from "../shared/user/user.model";
 import { UserService } from "../shared/user/user.service";
 import { Router } from "@angular/router";
 import { Page } from "tns-core-modules/ui/page";
+import { AuthService } from '../shared/auth.service';
+import { topmost } from "tns-core-modules/ui/frame";
+import { ITnsOAuthTokenResult } from "nativescript-oauth2";
 
 @Component({
   selector: 'ns-login',
@@ -20,7 +23,7 @@ export class LoginComponent implements OnInit {
   user: User;
   isLoggingIn = true;
 
-  constructor(private page: Page, private router: Router, private userService: UserService) {
+  constructor(private page: Page, private router: Router, private userService: UserService, private authService: AuthService) {
     this.user = new User();
   }
 
@@ -37,6 +40,25 @@ export class LoginComponent implements OnInit {
     } else {
       this.signUp();
     }
+  }
+
+  facebookLogin() {
+    const fram = topmost();
+    this.authService
+      .tnsOauthLogin("facebook")
+      .then((result: ITnsOAuthTokenResult) => {
+        console.log(result);
+        console.log("back to app component with token" + result.accessToken);
+      });
+  }
+  googleLogin() {
+    const fram = topmost();
+    this.authService
+      .tnsOauthLogin("google")
+      .then((result: ITnsOAuthTokenResult) => {
+        console.log(result);
+        console.log("back to app component with token" + result.accessToken);
+      });
   }
 
   login() {

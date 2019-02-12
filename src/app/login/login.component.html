@@ -9,5 +9,7 @@
         <TextField hint="Password" secure="true" [(ngModel)]="user.password" class="input input-border"></TextField>
 		<Button [text]="isLoggingIn ? 'Sign in' : 'Sign up'" class="btn btn-primary" (tap)="submit()"></Button>
 		<Button [text]="isLoggingIn ? 'Sign up' : 'Back to login'" (tap)="toggleDisplay()"></Button>
+		<Button text="Facebook Login" class="btn btn-primary" (tap)="facebookLogin()"></Button>
+		<Button text="Google Login" class="btn btn-primary" (tap)="googleLogin()"></Button>
 	</StackLayout>
 </FlexboxLayout>
