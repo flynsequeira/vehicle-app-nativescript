@@ -2,7 +2,7 @@
 <ActionBar title="Car Management"></ActionBar>
 
 <FlexboxLayout>
-	<StackLayout class="form" [class.dark]="!isLoggingIn">
+	<StackLayout class="form" [class.dark]="!isLoggingIn" *ngIf='!addEmail'>
 		<Image src="~/images/logo.png"></Image>
         <TextField hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email"
         class="input input-border"></TextField>
@@ -11,5 +11,12 @@
 		<Button [text]="isLoggingIn ? 'Sign up' : 'Back to login'" (tap)="toggleDisplay()"></Button>
 		<Button text="Facebook Login" class="btn btn-primary" (tap)="facebookLogin()"></Button>
 		<Button text="Google Login" class="btn btn-primary" (tap)="googleLogin()"></Button>
+	</StackLayout>
+	<StackLayout class="form" [class.dark]="!isLoggingIn" *ngIf='addEmail'>
+		
+        <TextField hint="Add your email address" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email"
+        class="input input-border"></TextField>
+        <TextField hint="Password" secure="true" [(ngModel)]="user.password" class="input input-border"></TextField>
+		<Button text="Add Email" class="btn btn-primary" (tap)="facebookSignUp()"></Button>
 	</StackLayout>
 </FlexboxLayout>

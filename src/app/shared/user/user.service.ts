@@ -62,6 +62,35 @@ export class UserService {
     );
   }
 
+  fbRegister(user: User, token: Object) {
+    return this.http.post(
+      Config.apiUrl + "api/users/register/fb",
+      {
+        user,
+        token
+      },
+      { headers: this.getCommonHeaders() }
+    ).pipe(
+      map(response => {
+        this.setToken(response.json()['token'])
+        return response.json()['user'];
+      }),
+      catchError(this.handleErrors)
+    );
+  }
+
+  fbResult(token: String) {
+    return this.http.post(
+      Config.apiUrl + "api/users/check/fb",
+      JSON.stringify({
+        token: token
+      }), 
+      { headers: this.getCommonHeaders() }
+    ).toPromise().then((response)=>{
+      return response.json()['user_exists'];
+    })
+  }
+
   login(user: User) {
     return this.http.post(
       Config.apiUrl + "api/users/login",

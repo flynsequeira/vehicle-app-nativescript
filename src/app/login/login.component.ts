@@ -22,6 +22,8 @@ import { ITnsOAuthTokenResult } from "nativescript-oauth2";
 export class LoginComponent implements OnInit {
   user: User;
   isLoggingIn = true;
+  addEmail = false;
+  token; 
 
   constructor(private page: Page, private router: Router, private userService: UserService, private authService: AuthService) {
     this.user = new User();
@@ -32,6 +34,17 @@ export class LoginComponent implements OnInit {
     this.page.backgroundSpanUnderStatusBar = true;
     this.user['email']='someemail@gmail.com';
     this.user['password']='passmein';
+  }
+
+  facebookSignUp(){
+    this.userService.fbRegister(this.user,this.token).subscribe(
+      () => {
+        alert("Your account was successfully created!");
+        setTimeout(() => { this.router.navigate(["/home"]) }, 2000)
+        // this.toggleDisplay();
+      },
+      (error) => alert("Invalid user and password")
+    );
   }
 
   submit() {
@@ -47,8 +60,18 @@ export class LoginComponent implements OnInit {
     this.authService
       .tnsOauthLogin("facebook")
       .then((result: ITnsOAuthTokenResult) => {
-        console.log(result);
-        console.log("back to app component with token" + result.accessToken);
+        return this.userService.fbResult(result['accessToken']).then((fbCheck)=>{
+          if(fbCheck){
+            console.log('doing facebook login');
+            this.token = result;
+            this.userService.setToken(result['accessToken']);
+            setTimeout(() => { this.router.navigate(["/home"]) }, 2000)
+          } else {
+            this.token = result;
+            this.addEmail = true
+          }
+        })
+        
       });
   }
   googleLogin() {
