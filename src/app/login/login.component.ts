@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.page.actionBarHidden = true;
     this.page.backgroundSpanUnderStatusBar = true;
-    this.user['email']='someemail@gmail.com';
-    this.user['password']='passmein';
   }
 
   facebookSignUp(){

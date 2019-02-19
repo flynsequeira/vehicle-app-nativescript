@@ -10,7 +10,7 @@
 		<Button [text]="isLoggingIn ? 'Sign in' : 'Sign up'" class="btn btn-primary" (tap)="submit()"></Button>
 		<Button [text]="isLoggingIn ? 'Sign up' : 'Back to login'" (tap)="toggleDisplay()"></Button>
 		<Button text="Facebook Login" class="btn btn-primary" (tap)="facebookLogin()"></Button>
-		<Button text="Google Login" class="btn btn-primary" (tap)="googleLogin()"></Button>
+		<!-- <Button text="Google Login" class="btn btn-primary" (tap)="googleLogin()"></Button> -->
 	</StackLayout>
 	<StackLayout class="form" [class.dark]="!isLoggingIn" *ngIf='addEmail'>
 		

@@ -14,7 +14,7 @@ import { UserService } from "./shared/user/user.service";
 export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
-
+    email = ''
     constructor(private router: Router, private routerExtensions: RouterExtensions, private userService: UserService) {
         // Use the component constructor to inject services.
     }
@@ -22,10 +22,14 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this._activatedUrl = "/home";
         this._sideDrawerTransition = new SlideInOnTopTransition();
+        
 
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
+        // this.userService.getUserData().subscribe((res)=>{
+        //     this.email = res['email'];
+        // })
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
