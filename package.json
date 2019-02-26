@@ -5,7 +5,7 @@
             "version": "5.0.0"
         },
         "tns-ios": {
-            "version": "5.0.0"
+            "version": "5.2.0"
         }
     },
     "description": "NativeScript Application",
@@ -33,6 +33,7 @@
         "reflect-metadata": "~0.1.10",
         "rxjs": "~6.3.0",
         "tns-core-modules": "~5.0.2",
+        "yallist": "^3.0.3",
         "zone.js": "~0.8.18"
     },
     "devDependencies": {
