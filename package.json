@@ -31,7 +31,8 @@
         "nativescript-ui-listview": "^3.8.0",
         "nativescript-ui-sidedrawer": "~5.0.0",
         "reflect-metadata": "~0.1.10",
-        "rxjs": "~6.3.0",
+        "rxjs": "6.3.3",
+        "rxjs-compat": "6.4.0",
         "tns-core-modules": "~5.0.2",
         "yallist": "^3.0.3",
         "zone.js": "~0.8.18"

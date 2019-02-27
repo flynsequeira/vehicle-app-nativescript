@@ -14,11 +14,6 @@ import { ITnsOAuthTokenResult } from "nativescript-oauth2";
   moduleId: module.id,
 })
 
-@Component({
-  selector: "gr-login",
-  templateUrl: "login/login.component.html",
-  styleUrls: ["login/login.component.css"]
-})
 export class LoginComponent implements OnInit {
   user: User;
   isLoggingIn = true;

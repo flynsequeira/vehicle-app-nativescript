@@ -3,6 +3,7 @@ import { Http, Headers, Response } from "@angular/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 const appSettings = require("application-settings");
+import 'rxjs/Rx';
 
 
 import { User } from "./user.model";
@@ -32,20 +33,28 @@ export class UserService {
   }
 
   getUserData(): Observable<boolean> {
+    
     var getUserDataUrl = Config.apiUrl + "api/users/me";
     let opts = { headers: this.getAuthorizationHeader() };
     return this.http.get(getUserDataUrl, opts)
-      .pipe(
-        map(response => {
-          Config['user'] = response;
-          return response.json()
-        }),
-        catchError(this.handleErrors)
-      );
+      .map((response)=>{
+        console.log(response);
+        Config['user'] = response;
+        return response.json()
+      }).catch((err)=>{
+        return this.handleErrors(err);
+      })
+      // .pipe(
+      //   map(response => {
+      //     Config['user'] = response;
+      //     return response.json()
+      //   }),
+      //   catchError(this.handleErrors)
+      // );
   }
 
   register(user: User) {
-
+    console.log(Config.apiUrl + "api/users/register");
     return this.http.post(
       Config.apiUrl + "api/users/register",
       {
@@ -55,6 +64,7 @@ export class UserService {
       { headers: this.getCommonHeaders() }
     ).pipe(
       map(response => {
+        console.log('came to map');
         this.setToken(response.json()['token'])
         return response.json()['user'];
       }),
@@ -121,6 +131,8 @@ export class UserService {
   }
 
   handleErrors(error: Response) {
+    console.log('errors: ');
+    console.log(error);
     return throwError(error);
   }
 }
